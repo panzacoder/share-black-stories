@@ -5,42 +5,45 @@ import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import Layout from "../components/Layout";
 
-export const IndexPageTemplate = ({ heading }) => {
+export const IndexPageTemplate = ({ sections }) => {
+  console.log(sections);
   const classes = makeStyles(() => ({
     mainGrid: {
-      marginTop: "10rem",
+      alignSelf: "start",
       display: "grid",
+      marginTop: "10rem",
       gridTemplateColumns: "repeat(12, 1fr)",
-      gridTemplateRows: "repeat(2, 1fr)",
-      alignItems: "center",
+      gridTemplateRows: `repeat(${sections?.length || 1}, 1fr)`,
+      alignItems: "start",
       gridColumnGap: "1rem",
+      gridRowGap: "6rem",
     },
     leftSection: {
       gridColumn: "1/7",
     },
     rightSection: {
       gridColumn: "6/13",
+      textAlign: "right",
     },
   }))();
   return (
     <div className={classes.mainGrid}>
-      <Typography variant="h1" className={classes.leftSection}>
-        {heading}
-      </Typography>
+      {sections?.map((section, index) => (
+        <Typography
+          variant="h1"
+          className={
+            index % 2 === 0 ? classes.leftSection : classes.rightSection
+          }
+        >
+          {section}
+        </Typography>
+      ))}
     </div>
   );
 };
 
 IndexPageTemplate.propTypes = {
-  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-  title: PropTypes.string,
-  heading: PropTypes.string,
-  subheading: PropTypes.string,
-  mainpitch: PropTypes.object,
-  description: PropTypes.string,
-  intro: PropTypes.shape({
-    blurbs: PropTypes.array,
-  }),
+  sections: PropTypes.array,
 };
 
 const IndexPage = ({ data }) => {
@@ -48,7 +51,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <IndexPageTemplate heading={frontmatter.heading} />
+      <IndexPageTemplate sections={frontmatter.sections} />
     </Layout>
   );
 };
@@ -67,7 +70,7 @@ export const pageQuery = graphql`
   query IndexPageTemplate {
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
-        heading
+        sections
       }
     }
   }
