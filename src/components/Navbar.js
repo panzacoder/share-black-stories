@@ -33,7 +33,7 @@ const Navbar = () => {
         className={classes.survey}
         activeClassName={classes.active}
       >
-        Survey
+        Tell my story
       </Link>
     </div>
   );
