@@ -10,20 +10,20 @@ backend:
 
 media_folder: static/img
 public_folder: /img
+local_backend: true
 
 collections:
 
-  - name: "pages"
-    label: "Pages"
+  - label: "Pages"
+    name: "pages"
     files:
-      - file: "src/pages/index.md"
-        label: "Landing Page"
+      - label: "Landing Page"
         name: "index"
+        file: "src/pages/index.md"
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
           - label: Sections
             name: sections
             widget: list
-            fields:
-              - {label: Section, name: section, widget: string}
+            field: {label: Section, name: section, widget: string}
 
