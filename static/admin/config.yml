@@ -21,6 +21,9 @@ collections:
         name: "index"
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
-          - {label: Sections, name: sections, widget: list, fields:
-            - {label: Section, name: section, widget: string}
-            }
+          - label: Sections
+            name: sections
+            widget: list
+            fields:
+              - {label: Section, name: section, widget: string}
+
