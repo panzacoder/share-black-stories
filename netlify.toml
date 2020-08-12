@@ -1,8 +1,10 @@
 [build]
   publish = "public"
-  command = "npm run build"
+  command = "GATSBY_EXPERIMENTAL_PAGE_BUILD_ON_DATA_CHANGES=true gatsby build --log-pages"
   functions = "lambda"
 [build.environment]
-  NODE_VERSION = "12"
+  NODE_VERSION = "14.2.0"
   YARN_VERSION = "1.22.4"
   YARN_FLAGS = "--no-ignore-optional"
+[[plugins]]
+package = "netlify-plugin-gatsby-cache"

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { graphql } from "gatsby";
-import { Typography } from "@material-ui/core";
+import Markdown from "../components/Markdown";
 import { makeStyles } from "@material-ui/core/styles";
 import Layout from "../components/Layout";
 
@@ -29,14 +29,13 @@ export const IndexPageTemplate = ({ sections }) => {
   return (
     <div className={classes.mainGrid}>
       {sections?.map((section, index) => (
-        <Typography
-          variant="h1"
+        <Markdown
           className={
             index % 2 === 0 ? classes.leftSection : classes.rightSection
           }
         >
           {section}
-        </Typography>
+        </Markdown>
       ))}
     </div>
   );

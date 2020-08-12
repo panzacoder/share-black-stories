@@ -25,5 +25,5 @@ collections:
           - label: Sections
             name: sections
             widget: list
-            field: {label: Section, name: section, widget: string}
+            field: {label: Section, name: section, widget: markdown}
 
